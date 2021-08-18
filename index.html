@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Guest List</title>
+        <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <center>
+        <h1>Guest List</h1>
+        <input id="Guest" placeholder="Guest"> <button onclick="add()">Submit</button><br>
+        <h3 id="list"></h3><br>
+        <h1>List</h1>
+        <button onclick="showlist()">Show</button>
+        <h3 id="listbr"></h3>
+        <button id="sorted" style="display:none" onclick="sort()">Sorted List</button>
+        <h3 id="sort"></h3>
+        <input id="searching" placeholder="Search Name" style="display:none"><button id="search" onclick="search()" style="display:none; margin-top:10px;">Search</button>
+        <h3 id="result"></h3>
+        <script>
+            var list = []
+            var guest = document.getElementById("Guest")
+            function add(){
+                list.push(guest.value)
+                document.getElementById("list").innerHTML=list
+            }
+
+            function showlist(){
+                document.getElementById("listbr").innerHTML = list.join("<br><br>")
+                document.getElementById("sorted").style.display = "block"
+            }
+            
+            function sort(){
+               list.sort()
+               document.getElementById("sort").innerHTML = list.join("<br><br>")
+               document.getElementById("search").style.display = "block"
+               document.getElementById("searching").style.display = "block"
+            }
+            
+            var searching = document.getElementById("searching")
+
+            function search(){
+                var times = 0;
+                var value = searching.value
+                for(var i in list){
+                    if(list[i] == value){
+                        times++
+                    }
+                }
+                document.getElementById("result").innerHTML = value + " is mentioned " + times + " times" + "."
+            }
+        </script>
+    </body>
+</html>
